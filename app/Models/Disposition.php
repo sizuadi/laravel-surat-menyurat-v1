@@ -17,6 +17,7 @@ class Disposition extends Model
         'content',
         'note',
         'letter_status',
+        'disposition_status',
         'letter_id',
         'user_id'
     ];

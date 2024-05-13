@@ -41,6 +41,7 @@ Route::middleware(['auth'])->group(function () {
     Route::prefix('transaction')->as('transaction.')->group(function () {
         Route::resource('incoming', \App\Http\Controllers\IncomingLetterController::class);
         Route::resource('outgoing', \App\Http\Controllers\OutgoingLetterController::class);
+        Route::put('{letter}/disposition/{disposition}/disposition-status', [\App\Http\Controllers\DispositionController::class, 'updateDispositionStatus'])->name('disposition.update-disposition-status');
         Route::resource('{letter}/disposition', \App\Http\Controllers\DispositionController::class)->except(['show']);
     });
 

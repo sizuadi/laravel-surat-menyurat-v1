@@ -25,6 +25,7 @@ class IncomingLetterController extends Controller
      */
     public function index(Request $request): View
     {
+        // dd(Letter::incoming()->render($request->search));
         return view('pages.transaction.incoming.index', [
             'data' => Letter::incoming()->render($request->search),
             'search' => $request->search,

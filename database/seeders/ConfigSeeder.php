@@ -30,11 +30,11 @@ class ConfigSeeder extends Seeder
             ],
             [
                 'code' => 'institution_name',
-                'value' => '404nfid',
+                'value' => 'unpam',
             ],
             [
                 'code' => 'institution_address',
-                'value' => 'Jl. Padat Karya',
+                'value' => 'Jl. Exmaple',
             ],
             [
                 'code' => 'institution_phone',
@@ -50,7 +50,7 @@ class ConfigSeeder extends Seeder
             ],
             [
                 'code' => 'pic',
-                'value' => 'M. Iqbal Effendi',
+                'value' => 'test',
             ],
         ]);
     }

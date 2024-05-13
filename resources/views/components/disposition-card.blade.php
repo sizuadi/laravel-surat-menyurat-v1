@@ -8,18 +8,30 @@
             <div class="card-title d-flex flex-row">
                 <div class="d-inline-block mx-2 text-end text-black">
                     <small class="d-block text-secondary">{{ __('model.disposition.due_date') }}</small>
-                    {{ $disposition->formatted_due_date }}
+                    <div>{{ $disposition->formatted_due_date }}</div>
+                    @if ($disposition->disposition_status == 0)
+                        <form
+                            action="{{ route('transaction.disposition.update-disposition-status', ['letter' => $letter->id, 'disposition' => $disposition->id]) }}"
+                            method="post">
+                            @method('PUT')
+                            @csrf
+                            <button type="submit" class="badge btn-danger">Butuh tindak lanjut</button>
+                        </form>
+                    @else
+                        <div class="badge btn-success">Sudah selesai</div>
+                    @endif
                 </div>
                 <div class="dropdown d-inline-block">
-                    <button class="btn p-0" type="button" id="dropdown-disposition-{{ $disposition->id }}" data-bs-toggle="dropdown"
-                            aria-haspopup="true" aria-expanded="false">
+                    <button class="btn p-0" type="button" id="dropdown-disposition-{{ $disposition->id }}"
+                        data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <i class="bx bx-dots-vertical-rounded"></i>
                     </button>
-                    <div class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdown-disposition-{{ $disposition->id }}">
+                    <div class="dropdown-menu dropdown-menu-end"
+                        aria-labelledby="dropdown-disposition-{{ $disposition->id }}">
                         <a class="dropdown-item"
-                           href="{{ route('transaction.disposition.edit', [$letter, $disposition]) }}">{{ __('menu.general.edit') }}</a>
-                        <form action="{{ route('transaction.disposition.destroy', [$letter, $disposition]) }}" class="d-inline"
-                              method="post">
+                            href="{{ route('transaction.disposition.edit', [$letter, $disposition]) }}">{{ __('menu.general.edit') }}</a>
+                        <form action="{{ route('transaction.disposition.destroy', [$letter, $disposition]) }}"
+                            class="d-inline" method="post">
                             @csrf
                             @method('DELETE')
                             <span

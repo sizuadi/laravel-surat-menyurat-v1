@@ -22,6 +22,7 @@ class DispositionFactory extends Factory
             'content' => $this->faker->sentence(10),
             'note' => $this->faker->sentence(3),
             'letter_status' => $this->faker->numberBetween(1,3),
+            'letter_status' => $this->faker->numberBetween(0,1),
             'letter_id' => $this->faker->numberBetween(1, 50),
             'user_id' => 1,
         ];

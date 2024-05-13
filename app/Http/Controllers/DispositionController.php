@@ -100,6 +100,25 @@ class DispositionController extends Controller
     }
 
     /**
+     * Update the specified resource in storage.
+     *
+     * @param UpdateDispositionRequest $request
+     * @param Letter $letter
+     * @param Disposition $disposition
+     * @return RedirectResponse
+     */
+    public function updateDispositionStatus(Letter $letter, Disposition $disposition): RedirectResponse
+    {
+        try {
+            $disposition->disposition_status = 1;
+            $disposition->update();
+            return back()->with('success', __('menu.general.success'));
+        } catch (\Throwable $exception) {
+            return back()->with('error', $exception->getMessage());
+        }
+    }
+
+    /**
      * Remove the specified resource from storage.
      *
      * @param Letter $letter
